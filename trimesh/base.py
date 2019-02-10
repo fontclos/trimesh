@@ -8,6 +8,7 @@ Library for importing, exporting and doing simple operations on triangular meshe
 import numpy as np
 
 import copy
+import k3d
 
 from . import ray
 from . import util
@@ -176,6 +177,15 @@ class Trimesh(object):
 
         # store all passed kwargs for debugging purposes
         self._kwargs = kwargs
+
+    def k3d(self, **kwargs):
+        """
+        Construct a k3d mesh object.
+
+        Arguments are passed to k3d.mesh
+        """
+        k3dmesh = k3d.mesh(vertices=self.vertices, indices=self.faces, **kwargs)
+        return k3dmesh
 
     def process(self):
         """
